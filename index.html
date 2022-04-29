@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Meme Lounge</title>
+    <link rel="stylesheet" href="style/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="app.js" type="module" defer></script>
+    <script src="dom three/registration.js" defer></script>
+    <script src="dom three/login.js"  type="text/javascript" defer></script>
+    <script src="dom three/creatingMemes.js" type="text/javascript" defer></script>
+    <script src="dom three/allMemes.js" type="text/javascript" defer></script>
+    <script src="dom three/count.js" type="text/javascript" defer></script>
+
+
+</head>
+
+<body>
+    <div id="container">
+
+
+        <div id="logOut1">
+            <!-- Notifications -->
+            <section id="notifications">
+                <div id="errorBox" class="notification">
+                    <span>MESSAGE</span>
+                </div>
+            </section>
+
+            <!-- Navigation -->
+            <nav>
+                <a href="/allMemes">All Memes</a>
+                <!-- Logged users -->
+                <div class="user">
+                    <a href="/createMeme">Create Meme</a>
+                    <div class="profile">
+                        <span>Welcome, {email}</span>
+                        <a href="/myProfile">My Profile</a>
+                        <a href="/logout" onclick="logout(event)">Logout</a>
+
+                    </div>
+                </div>
+                <!-- Guest users -->
+                <div class="guest">
+                    <div class="profile">
+                        <a href="/login">Login</a>
+                        <a href="/register">Register</a>
+                    </div>
+                    <a class="active" href="/home">Home Page</a>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main>
+            </main>
+
+        </div>
+
+
+        <div id="root">
+
+        </div>
+
+        <!-- Footer  -->
+        <footer class="footer">
+            <p>Created by SoftUni Delivery Team</p>
+        </footer>
+    </div>
+
+
+
+    <script type="text/x-handlebars-template" id="memeS" >
+
+        <section id="meme-feed" >
+            <h1>All Memes</h1>
+
+                <!-- Display : If there are no memes in database -->
+
+        </section>
+
+    </script>
+
+    <script type="text/x-handlebars-template" id="createMeme" >
+
+        <!-- Create Meme Page ( Only for logged users ) -->
+        <section id="create-meme" >
+            <form id="create-form">
+                <div class="container">
+                    <h1>Create Meme</h1>
+                    <label for="title">Title</label>
+                    <input id="title" type="text" placeholder="Enter Title" name="title">
+                    <label for="description">Description</label>
+                    <textarea id="description" placeholder="Enter Description" name="description"></textarea>
+                    <label for="imageUrl">Meme Image</label>
+                    <input id="imageUrl" type="text" placeholder="Enter meme ImageUrl" name="imageUrl">
+                    <input type="submit" class="registerbtn button" value="Create Meme" onclick="createMeme(event)">
+                </div>
+            </form>
+        </section>
+    </script>
+
+    <script type="text/x-handlebars-template" id="profileMeme">
+
+        <!-- Profile Page ( Only for logged users ) -->
+        <section id="user-profile-page" class="user-profile" >
+            <article class="user-info">
+                <img id="user-avatar-url" alt="user-profile" src="./images/female.png">
+                <div class="user-content" >
+                    <p>Username: Mary</p>
+                    <p>Email: mary@abv.bg</p>
+                    <p>My memes count: 2</p>
+                </div>
+            </article>
+            <h1 id="user-listings-title">User Memes</h1>
+            <div class="user-meme-listings">
+                <!-- Display : All created memes by this user (If any) -->
+                <div class="user-meme">
+                    <p class="user-meme-title">Java Script joke</p>
+                    <img class="userProfileImage" alt="meme-img" src="./images/1.png">
+                    <a class="button" href="#">Details</a>
+                </div>
+                <div class="user-meme">
+                    <p class="user-meme-title">Bad code can present some problems</p>
+                    <img class="userProfileImage" alt="meme-img" src="./images/3.png">
+                    <a class="button" href="#">Details</a>
+                </div>
+
+                <!-- Display : If user doesn't have own memes  -->
+                <p class="no-memes">No memes in database.</p>
+            </div>
+        </section>
+
+
+    </script>
+
+<script type="text/x-handlebars-template" id="home">
+    <!-- Welcome Page ( Only for guest users ) -->
+    <section id="welcome">
+        <div id="welcome-container">
+            <h1>Welcome To Meme Lounge</h1>
+            <img src="./images/welcome-meme.jpg" alt="meme">
+            <h2>Login to see our memes right away!</h2>
+            <div id="button-div">
+                <a href="/login" class="button">Login</a>
+                <a href="/register" class="button">Register</a>
+            </div>
+        </div>
+    </section>
+
+</script>
+
+<script type="text/x-handlebars-template" id="logout">
+
+    <!-- Notifications -->
+    <section id="notifications">
+        <div id="errorBox" class="notification">
+            <span>MESSAGE</span>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="/allMemes" >All Memes</a>
+        <!-- Logged users -->
+        <div class="user">
+            <a href="/createMeme">Create Meme</a>
+            <div class="profile">
+                <span>Welcome, {email}</span>
+                <a href="/myProfile">My Profile</a>
+                <a href="/logout" onclick="logout(event)">Logout</a>
+
+            </div>
+        </div>
+        <!-- Guest users -->
+        <div class="guest">
+            <div class="profile">
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            </div>
+            <a class="active" href="/home">Home Page</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+    </main>
+
+
+</script>
+
+<script type="text/x-handlebars-template" id="log">
+
+    <section id="login">
+        <form id="login-form">
+            <div class="container">
+                <h1>Login</h1>
+                <label for="email">Email</label>
+                <input id="email" placeholder="Enter Email" name="email" type="text">
+                <label id="em"></label>
+                <label for="password">Password</label>
+                <input id="password" type="password" placeholder="Enter Password" name="password">
+                <label id="pas"></label>
+                <input type="submit" onclick="login(event)" class="registerbtn button" value="Login">
+                <div class="container signin">
+                    <p>Dont have an account?<a href="/register">Sign up</a>.</p>
+                </div>
+            </div>
+        </form>
+    </section>
+
+</script>
+
+
+<script type="text/x-handlebars-template" id="registered">
+
+
+    <!-- Register Page ( Only for guest users ) -->
+    <section id="register">
+        <form id="register-form">
+            <div class="container">
+                <h1>Register</h1>
+                <label for="username">Username</label>
+                <input id="username" type="text" placeholder="Enter Username" name="username">
+                <label for="email">Email</label>
+                <input id="email" type="text" placeholder="Enter Email" name="email">
+                <label for="password">Password</label>
+                <input id="password" type="password" placeholder="Enter Password" name="password">
+                <label for="repeatPass">Repeat Password</label>
+                <input id="repeatPass" type="password" placeholder="Repeat Password" name="repeatPass">
+                <div class="gender">
+                    <input type="radio" name="gender" id="female" value="female">
+                    <label for="female">Female</label>
+                    <input type="radio" name="gender" id="male" value="male" checked>
+                    <label for="male">Male</label>
+                </div>
+                <input type="submit" onclick="register(event)" class="registerbtn button" value="Register">
+                <div class="container signin">
+                    <p>Already have an account?<a href="/login">Sign in</a>.</p>
+                </div>
+            </div>
+        </form>
+    </section>
+
+</script>
+</body>
+
+</html>
